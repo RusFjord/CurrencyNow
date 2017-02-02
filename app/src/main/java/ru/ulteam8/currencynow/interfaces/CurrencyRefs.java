@@ -2,6 +2,7 @@ package ru.ulteam8.currencynow.interfaces;
 
 import android.content.Context;
 
-public interface Refs {
+public interface CurrencyRefs {
     String getRepresentation(Context context);
+    String getSymbol();
 }

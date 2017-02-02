@@ -5,9 +5,9 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 
 import ru.ulteam8.currencynow.db.entries.CurrencyEntry;
-import ru.ulteam8.currencynow.interfaces.Refs;
+import ru.ulteam8.currencynow.interfaces.CurrencyRefs;
 
-public class Currency implements Refs {
+public class Currency implements CurrencyRefs {
 
     private long id;
     private int name;
@@ -31,12 +31,13 @@ public class Currency implements Refs {
         return context.getResources().getString(name);
     }
 
-    public Drawable getPicture(Context context) {
-        return context.getResources().getDrawable(picture, null);
-    }
-
+    @Override
     public String getSymbol() {
         return symbol;
+    }
+
+    public Drawable getPicture(Context context) {
+        return context.getResources().getDrawable(picture, null);
     }
 
     public long getId() {

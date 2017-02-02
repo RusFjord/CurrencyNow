@@ -2,29 +2,29 @@ package ru.ulteam8.currencynow.models;
 
 import android.content.Context;
 
-import ru.ulteam8.currencynow.interfaces.Refs;
+import ru.ulteam8.currencynow.interfaces.CurrencyRefs;
 
-public class CurrencyPair implements Refs {
+public class CurrencyPair implements CurrencyRefs {
 
-    private Refs firstCurrency;
-    private Refs secondCurrency;
+    private CurrencyRefs firstCurrency;
+    private CurrencyRefs secondCurrency;
     private float coefficient = 1.0f;
 
-    public CurrencyPair(Refs firstCurrency, Refs secondCurrency) {
+    public CurrencyPair(CurrencyRefs firstCurrency, CurrencyRefs secondCurrency) {
         this.firstCurrency = firstCurrency;
         this.secondCurrency = secondCurrency;
     }
 
-    public CurrencyPair(Refs firstCurrency, Refs secondCurrency, float coefficient) {
+    public CurrencyPair(CurrencyRefs firstCurrency, CurrencyRefs secondCurrency, float coefficient) {
         this(firstCurrency, secondCurrency);
         this.coefficient = coefficient;
     }
 
-    public Refs getFirstCurrency() {
+    public CurrencyRefs getFirstCurrency() {
         return firstCurrency;
     }
 
-    public Refs getSecondCurrency() {
+    public CurrencyRefs getSecondCurrency() {
         return secondCurrency;
     }
 
@@ -61,6 +61,19 @@ public class CurrencyPair implements Refs {
         }
         if (secondCurrency != null) {
             result.append(secondCurrency.getRepresentation(context));
+        }
+        return result.toString();
+    }
+
+    @Override
+    public String getSymbol() {
+        StringBuilder result = new StringBuilder();
+        if (firstCurrency != null) {
+            result.append(firstCurrency.getSymbol());
+            result.append(" - ");
+        }
+        if (secondCurrency != null) {
+            result.append(secondCurrency.getSymbol());
         }
         return result.toString();
     }
