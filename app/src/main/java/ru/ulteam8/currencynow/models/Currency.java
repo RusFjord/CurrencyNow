@@ -1,8 +1,10 @@
 package ru.ulteam8.currencynow.models;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 
+import ru.ulteam8.currencynow.db.entries.CurrencyEntry;
 import ru.ulteam8.currencynow.interfaces.Refs;
 
 public class Currency implements Refs {
@@ -10,10 +12,18 @@ public class Currency implements Refs {
     private long id;
     private int name;
     private int picture;
+    private String symbol;
 
-    public Currency(long id, int name) {
-        this.id = id;
-        this.name = name;
+    public Currency(Cursor cursor) {
+        int idColumnIndex = cursor.getColumnIndex(CurrencyEntry._ID);
+        int nameColumnIndex = cursor.getColumnIndex(CurrencyEntry.COLUMN_NAME);
+        int pictureColumnIndex = cursor.getColumnIndex(CurrencyEntry.COLUMN_PICTURE);
+        int symbolColumnIndex = cursor.getColumnIndex(CurrencyEntry.COLUMN_SYMBOL);
+
+        this.id = cursor.getLong(idColumnIndex);
+        this.name = cursor.getInt(nameColumnIndex);
+        this.picture = cursor.getInt(pictureColumnIndex);
+        this.symbol = cursor.getString(symbolColumnIndex);
     }
 
     @Override
@@ -23,5 +33,13 @@ public class Currency implements Refs {
 
     public Drawable getPicture(Context context) {
         return context.getResources().getDrawable(picture, null);
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public long getId() {
+        return id;
     }
 }
