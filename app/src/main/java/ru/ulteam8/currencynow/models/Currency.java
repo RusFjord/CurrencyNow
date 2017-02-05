@@ -14,6 +14,12 @@ public class Currency implements CurrencyRefs {
     private int picture;
     private String symbol;
 
+    public Currency(int name, int picture, String symbol) {
+        this.name = name;
+        this.picture = picture;
+        this.symbol = symbol;
+    }
+
     public Currency(Cursor cursor) {
         int idColumnIndex = cursor.getColumnIndex(CurrencyEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(CurrencyEntry.COLUMN_NAME);

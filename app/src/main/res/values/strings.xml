@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CurrencyNow</string>
+    <string name="russian_ruble">Russian ruble</string>
+    <string name="us_dollar">US Dollar</string>
+    <string name="exchange">Exchange</string>
+    <string name="contentDescrFlag">flag</string>
 </resources>

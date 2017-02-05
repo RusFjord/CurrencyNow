@@ -10,8 +10,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ru.ulteam8.currencynow.MainActivity">
 
+    <Button
+        android:id="@+id/butEschange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exchange"
+        android:layout_alignParentTop="true"/>
+    <LinearLayout
+        android:id="@+id/baseValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/butEschange">
+        <ImageView
+            android:id="@+id/baseCurrencyFlag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/contentDescrFlag" />
+        <TextView
+            android:id="@+id/baseCurrencyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/currencyValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/baseValue"/>
     <TextView
+        android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_below="@+id/currencyValue" />
 </RelativeLayout>

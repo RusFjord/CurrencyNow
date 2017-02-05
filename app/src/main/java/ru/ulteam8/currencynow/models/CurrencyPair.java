@@ -1,11 +1,15 @@
 package ru.ulteam8.currencynow.models;
 
 import android.content.Context;
+import android.util.Log;
+
+import org.json.JSONObject;
 
 import ru.ulteam8.currencynow.interfaces.CurrencyRefs;
 
 public class CurrencyPair implements CurrencyRefs {
 
+    private final String LOG_TAG = "CURRENCY PAIR";
     private CurrencyRefs firstCurrency;
     private CurrencyRefs secondCurrency;
     private float coefficient = 1.0f;
@@ -34,6 +38,17 @@ public class CurrencyPair implements CurrencyRefs {
 
     public void setCoefficient(float coefficient) {
         this.coefficient = coefficient;
+    }
+
+    public void setCoefficient(String jsonResult) {
+        try {
+            JSONObject jsonObject = new JSONObject(jsonResult);
+            JSONObject rates = jsonObject.getJSONObject("rates");
+            String rate = rates.getString(this.secondCurrency.getSymbol());
+            coefficient = Float.valueOf(rate);
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
+        }
     }
 
     public float getRatioFirstToSecond(float amount) {
